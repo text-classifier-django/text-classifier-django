@@ -103,7 +103,8 @@ USE_L10N = True
 USE_TZ = True
 
 # Update database configuration with $DATABASE_URL.
-path_url = os.environ.get('BANANA_DATABASE_URL')
+# path_url = os.environ.get('BANANA_SECRET_KEY')
+path_url = os.environ.get('#t_a-n!k*3a)s4$wwi(!d9_^lo-h2sui5$v*npvxy!=onok-u0')
 db_from_env = dj_database_url.config(default=path_url, conn_max_age=500)
 DATABASES = {'default': {}}
 DATABASES['default'].update(db_from_env)
