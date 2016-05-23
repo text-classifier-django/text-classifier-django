@@ -20,7 +20,8 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
-SECRET_KEY = os.environ.get('BANANA_SECRET_KEY')
+SECRET_KEY = os.environ.get('#t_a-n!k*3a)s4$wwi(!d9_^lo-h2sui5$v*npvxy!=onok-u0')
+# SECRET_KEY = os.environ.get('BANANA_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -103,8 +104,7 @@ USE_L10N = True
 USE_TZ = True
 
 # Update database configuration with $DATABASE_URL.
-# path_url = os.environ.get('BANANA_SECRET_KEY')
-path_url = os.environ.get('#t_a-n!k*3a)s4$wwi(!d9_^lo-h2sui5$v*npvxy!=onok-u0')
+path_url = os.environ.get('BANANA_DATABASE_URL')
 db_from_env = dj_database_url.config(default=path_url, conn_max_age=500)
 DATABASES = {'default': {}}
 DATABASES['default'].update(db_from_env)
