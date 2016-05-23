@@ -20,7 +20,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
-SECRET_KEY = os.environ.get('#t_a-n!k*3a)s4$wwi(!d9_^lo-h2sui5$v*npvxy!=onok-u0')
+SECRET_KEY = '#t_a-n!k*3a)s4$wwi(!d9_^lo-h2sui5$v*npvxy!=onok-u0'
 # SECRET_KEY = os.environ.get('BANANA_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
