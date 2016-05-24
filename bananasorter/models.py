@@ -21,12 +21,12 @@ class Classifier(models.Model):
         y = []
 
         for cat in Category.objects.filter(classifier=self):
-            for line in cat.training_data:
+            for line in cat.training_data.split(','):
                 x.append(line)
                 y.append(cat.name)
 
         pipeline.fit(x, y)
-        return pipeline.predict(new_line)
+        return pipeline.predict([new_line])
 
 class Category(models.Model):
     name = models.CharField(max_length=120)
