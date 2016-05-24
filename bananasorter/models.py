@@ -5,7 +5,7 @@ from sklearn.naive_bayes import MultinomialNB
 from django.contrib.auth.models import User
 
 
-class Classfier(models.Model):
+class Classifier(models.Model):
     name = models.CharField(max_length=120)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 

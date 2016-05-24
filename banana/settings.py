@@ -27,6 +27,7 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = (
+    'bananasorter.apps.BananasorterConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
