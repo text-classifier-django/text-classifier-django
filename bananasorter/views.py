@@ -7,5 +7,5 @@ def detail(request):
     return render('bananasorter/detail.html')
 
 
-def data(request):
-    return render('bananasorter/data.html')
+def profile(request):
+    return render('bananasorter/profile.html')
