@@ -4,7 +4,7 @@ from bananasorter.models import Classifier, Category
 from bananasorter.forms import ClassifierForm, CategoryForm
 
 def index(request):
-    return render('bananasorter/index.html')
+    return render(request, 'bananasorter/index.html')
 
 def detail(request, id):
     context = {}
@@ -17,4 +17,4 @@ def detail(request, id):
 
 
 def profile(request):
-    return render('bananasorter/profile.html')
+    return render(request, 'bananasorter/profile.html')

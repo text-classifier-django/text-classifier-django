@@ -10,6 +10,10 @@ class Classifier(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
+    def __str__(self):
+        return self.name
+
+
     def predict(self, new_line):
         pipeline = Pipeline([
             ('count_vect', CountVectorizer()),
@@ -32,3 +36,6 @@ class Category(models.Model):
     name = models.CharField(max_length=120)
     training_data = models.TextField()
     classifier = models.ForeignKey("Classifier", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
