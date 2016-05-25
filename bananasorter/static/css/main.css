@@ -159,15 +159,6 @@ PAGE: PORTFOLIO
 PAGE: ABOUT
 ****************************/
 
-.profile-photo {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 150px;
-    margin: 0 auto 30px;
-    border-radius:  100%;
-}
-
 #primary-a {
     display: block;
     margin-left: auto;
@@ -186,41 +177,6 @@ PAGE: ABOUT
 }
 
 
-
-/****************************
-PAGE: CONTACT
-****************************/
-
-.contact-info {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 0.9em;
-}
-
-.contact-info a {
-    display: block;
-    min-height: 20px;
-    background-repeat: no-repeat;
-    background-size: 20px 20px;
-    padding: 0 0 0 30px;
-    margins: 0 0 10px 0;
-}
-
-.contact-info li.phone a {
-    background-image: url('../img/phone.png');
-    display: inline;
-}
-
-.contact-info li.mail a {
-    background-image: url('../img/mail.png');
-    display: inline;
-}
-
-.contact-info li.twitter a {
-    background-image: url('../img/twitter.png');
-    display: inline;
-}
 
 /****************************
 COLORS
