@@ -1,3 +1,6 @@
+{% extends 'bananasorter/base.html' %}
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,6 +10,10 @@
             <meta http-equiv="refresh" content="60">
         </noscript>
     </head>
+
+{% block content %}
+
+
     <body>
         <header>
             <h2>Text classifiers</h2>
@@ -41,4 +48,6 @@
                 location.reload();
         </script>
     </body>
+
+{% endblock %}
 </html>
