@@ -20,13 +20,13 @@ def detail(request, id):
     context['categories'] = Category.objects.filter(classifier=classifier)
 
     if request.method == 'POST':
-        if request.POST['name'] == 'Classify this!':
+        if request.POST['action'] == 'Classify this!':
             new_text = request.POST['new_text']
             prediction = classifier.predict(new_text)
             context['new_text'] = new_text
             context['prediction'] = prediction[0]
 
-        elif request.POST['new_category']:
+        elif request.POST['action'] == 'Submit':
             form = CategoryForm(request.POST)
             print(form, "got to submit")
             if form.is_valid():
@@ -35,7 +35,7 @@ def detail(request, id):
                 cat.classifier = classifier
                 cat.save()
 
-        elif request.POST['delete']:
+        elif request.POST['action'] == 'DELETE':
             print('delete it')
             classifier.delete()
             return HttpResponseRedirect('/profile/')

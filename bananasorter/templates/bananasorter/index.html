@@ -7,7 +7,7 @@
   {% if classifier_list %}
     <ul>
       {% for classifier in classifier_list %}
-        <li> <a href="">{{ classifier }}</a></li>
+        <li> <a href="{% url 'bananasorter:detail' classifier.id %}">{{ classifier }}</a></li>
       {% endfor %}
     </ul>
 
