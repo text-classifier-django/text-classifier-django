@@ -3,18 +3,19 @@
 
 <!DOCTYPE html>
 <html>
+<!-- {% load static from staticfiles %} -->
+
+
     <head>
         <meta charset="utf-8">
-        <title>Profile: {{ user }}</title>
+        {% block title %} Profile: {{ user }} {% endblock%}
+        <!-- <title>Profile: {{ user }}</title> -->
         <noscript>
             <meta http-equiv="refresh" content="60">
         </noscript>
     </head>
-
-{% block content %}
-
-
     <body>
+        {% block content %}
         <header>
             <h2>Text classifiers</h2>
         </header>
@@ -47,7 +48,6 @@
             function myFunction() {
                 location.reload();
         </script>
+        {% endblock %}
     </body>
-
-{% endblock %}
 </html>
