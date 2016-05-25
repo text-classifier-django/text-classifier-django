@@ -4,8 +4,10 @@ from django.contrib.auth.models import User
 from bananasorter.models import Classifier, Category
 from bananasorter.forms import ClassifierForm, CategoryForm
 
+
 def index(request):
     return render(request, 'bananasorter/index.html')
+
 
 def detail(request, id):
     context = {}
@@ -40,4 +42,18 @@ def detail(request, id):
 
 
 def profile(request):
+    context = {}
+    context['user'] = request.user
+    context['classifier_list'] = Classifier.objects.filter(owner=request.user)
+
+    if request.method == 'POST':
+        if request.POST['new_classifier']:
+            form = ClassifierForm(request.POST)
+            print(form, "got to submit")
+            if form.is_valid():
+                print(form, "is valid")
+                classifier_list = form.save(commit=False)
+                classifier_list.save()
+
+    context['classifier_form'] = ClassifierForm()
     return render(request, 'bananasorter/profile.html')
