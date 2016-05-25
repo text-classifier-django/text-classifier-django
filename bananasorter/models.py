@@ -9,6 +9,8 @@ class Classifier(models.Model):
     name = models.CharField(max_length=120)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
 
     def predict(self, new_line):
         pipeline = Pipeline([
@@ -21,14 +23,18 @@ class Classifier(models.Model):
         y = []
 
         for cat in Category.objects.filter(classifier=self):
-            for line in cat.training_data:
+            for line in cat.training_data.split(','):
                 x.append(line)
                 y.append(cat.name)
 
         pipeline.fit(x, y)
-        return pipeline.predict(new_line)
+        return pipeline.predict([new_line])
+
 
 class Category(models.Model):
     name = models.CharField(max_length=120)
     training_data = models.TextField()
     classifier = models.ForeignKey("Classifier", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name

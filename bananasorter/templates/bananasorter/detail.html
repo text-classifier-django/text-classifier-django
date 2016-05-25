@@ -1,0 +1,38 @@
+<head>
+  <meta charset="utf-8">
+  <title>Classifier: {{ classifier }}</title>
+</head>
+
+<body>
+  <h1>{{ classifier }} Classifier</h1>
+  <p>
+      Classify your text into the following categories:
+      {% for category in categories %}
+      <p>{{ category }}</p>
+      {% endfor %}
+  </p>
+
+  {% if prediction %}
+  <h2>Your Prediction</h2>
+  <p>
+      {{ new_text }}: {{ prediction }}
+  </p>
+  {% endif %}
+
+  <h2>Try it out!</h2>
+  <form id="classify" action="" method="post">{% csrf_token %}
+    <input type="text" name="new_text" value="">
+    <input type="submit" name="name" value="Classify this!">
+  </form>
+
+  <h2>Add a new category: </h2>
+    <form class="category_form" action="" method="post">{% csrf_token %}
+      {{category_form.as_p}}
+      <input type="submit" name="new_category" value="Submit">
+    </form>
+
+  <h2>DELETE THIS CLASSIFIER</h2>
+  <form id="delete" action="" method="post">{% csrf_token %}
+      <input type="submit" name="delete" value="DELETE">
+  </form>
+</body>

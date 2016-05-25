@@ -1,0 +1,18 @@
+<p>it's working </p>
+{% extends 'bananasorter/base.html' %}
+
+{% block content %}
+
+  <h2><u>- Classifier List</u></h2>
+  {% if classifier_list %}
+    <ul>
+      {% for classifier in classifier_list %}
+        <li> <a href="">{{ classifier }}</a></li>
+      {% endfor %}
+    </ul>
+
+  {% else %}
+    <p>No Classifier are available... but so far so Bueno!!!</p>
+  {% endif %}
+
+{% endblock %}
