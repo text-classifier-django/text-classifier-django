@@ -1,12 +1,18 @@
-from django.shortcuts import render
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.models import User
-from bananasorter.models import Classifier, Category
+from bananasorter.models import Classifier, Category, User
 from bananasorter.forms import ClassifierForm, CategoryForm
+from django.shortcuts import render
+
 
 
 def index(request):
-    return render(request, 'bananasorter/index.html')
+
+    context = {}
+    calssifier_list = Classifier.objects.all().order_by('name')[:20]
+    context = {'classifier_list' : calssifier_list}
+    return render(request, 'bananasorter/index.html', context)
+
 
 
 def detail(request, id):
@@ -39,6 +45,9 @@ def detail(request, id):
     context['classifier_form'] = ClassifierForm()
     context['category_form'] = CategoryForm()
     return render(request, 'bananasorter/detail.html', context)
+
+def detail(request):
+    return render('bananasorter/detail.html')
 
 
 def profile(request):
