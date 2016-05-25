@@ -4,30 +4,34 @@
         <meta charset="utf-8">
         <title>Profile: {{ user }}</title>
         <noscript>
-            <meta http-equiv="refresh" content="30">
+            <meta http-equiv="refresh" content="60">
         </noscript>
     </head>
     <body>
         <header>
-            <h1>Text classifiers</h1>
+            <h2>Text classifiers</h2>
         </header>
-        <p>
-            View the following text classifiers you've made:
-            {% for classifier in classifiers %}
-                <p>{{ classifier }}</p>
-            {% endfor %}
-        </p>
-
+        <p>View the following text classifiers you've made:</p>
+        {% if user_class_list %}
+            <ul>
+                {% for classifier in user_class_list %}
+                <li> <a href="">{{ classifier }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <ul>
+                <li>Empty list</li>
+            </ul>
+        {% endif %}
 
         <h2>Add a new classifier: </h2>
         <form class="classifier_form" action="" method="post">
             {% csrf_token %}
-            {{ form }}
-            <!-- <input type="text" name="new_name" value=""><br/><br/> -->
-            <!-- <script>console.log(.new_name)</script> -->
-            <input type="submit" name="add_classifier" value="Add Classifier">
-            <script>console.log('done')</script>
+            <!-- {{ classifier_form.as_p }} -->
+            <p>Name: <input type="text" name="name" value=""><br/><br/></p>
+            <input type="submit" name="new_classifier" value="Add Classifier">
         </form>
+
 
         <br/>
         <button onclick="myFunction()">Reload page</button>
@@ -35,7 +39,6 @@
         <script>
             function myFunction() {
                 location.reload();
-            }
         </script>
     </body>
 </html>

@@ -5,14 +5,12 @@ from bananasorter.forms import ClassifierForm, CategoryForm
 from django.shortcuts import render
 
 
-
 def index(request):
 
     context = {}
-    calssifier_list = Classifier.objects.all().order_by('name')[:20]
-    context = {'classifier_list' : calssifier_list}
+    classifier_list = Classifier.objects.all().order_by('name')[:20]
+    context = {'classifier_list': classifier_list}
     return render(request, 'bananasorter/index.html', context)
-
 
 
 def detail(request, id):
@@ -46,14 +44,15 @@ def detail(request, id):
     context['category_form'] = CategoryForm()
     return render(request, 'bananasorter/detail.html', context)
 
-def detail(request):
-    return render('bananasorter/detail.html')
+
+# def detail(request):
+#     return render('bananasorter/detail.html')
 
 
 def profile(request):
     context = {}
     context['user'] = request.user
-    context['classifier_list'] = Classifier.objects.filter(owner=request.user)
+    context['user_class_list'] = Classifier.objects.filter(owner=request.user)
 
     if request.method == 'POST':
         if request.POST['new_classifier']:
@@ -61,8 +60,9 @@ def profile(request):
             print(form, "got to submit")
             if form.is_valid():
                 print(form, "is valid")
-                classifier_list = form.save(commit=False)
-                classifier_list.save()
+                clssf = form.save(commit=False)
+                clssf.owner = request.user
+                clssf.save()
 
     context['classifier_form'] = ClassifierForm()
-    return render(request, 'bananasorter/profile.html')
+    return render(request, 'bananasorter/profile.html', context)
