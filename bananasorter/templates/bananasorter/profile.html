@@ -1,53 +1,53 @@
 {% extends 'bananasorter/base.html' %}
 
+{% block title %} Profile: {{ user }} {% endblock%}
 
-<!DOCTYPE html>
+{% block content %}
+<header>
+    <h2>Text classifiers</h2>
+</header>
+<p>View the following text classifiers you've made:</p>
+{% if user_class_list %}
+    <ul>
+        {% for classifier in user_class_list %}
+        <li> <a href="">{{ classifier }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <ul>
+        <li>Empty list</li>
+    </ul>
+{% endif %}
+
+<h2>Add a new classifier: </h2>
+<form class="classifier_form" action="" method="post">
+    {% csrf_token %}
+    <!-- {{ classifier_form.as_p }} -->
+    <p>Name: <input type="text" name="name" value=""><br/><br/></p>
+    <input type="submit" name="new_classifier" value="Add Classifier">
+</form>
+
+
+<br/>
+<button onclick="myFunction()">Reload page</button>
+
+<script>
+    function myFunction() {
+        location.reload();
+</script>
+{% endblock %}
+
+<!-- <!DOCTYPE html>
 <html>
-<!-- {% load static from staticfiles %} -->
-
+{% load static from staticfiles %}
 
     <head>
         <meta charset="utf-8">
-        {% block title %} Profile: {{ user }} {% endblock%}
-        <!-- <title>Profile: {{ user }}</title> -->
+        <title>Profile: {{ user }}</title>
         <noscript>
             <meta http-equiv="refresh" content="60">
         </noscript>
     </head>
     <body>
-        {% block content %}
-        <header>
-            <h2>Text classifiers</h2>
-        </header>
-        <p>View the following text classifiers you've made:</p>
-        {% if user_class_list %}
-            <ul>
-                {% for classifier in user_class_list %}
-                <li> <a href="">{{ classifier }}</a></li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <ul>
-                <li>Empty list</li>
-            </ul>
-        {% endif %}
-
-        <h2>Add a new classifier: </h2>
-        <form class="classifier_form" action="" method="post">
-            {% csrf_token %}
-            <!-- {{ classifier_form.as_p }} -->
-            <p>Name: <input type="text" name="name" value=""><br/><br/></p>
-            <input type="submit" name="new_classifier" value="Add Classifier">
-        </form>
-
-
-        <br/>
-        <button onclick="myFunction()">Reload page</button>
-
-        <script>
-            function myFunction() {
-                location.reload();
-        </script>
-        {% endblock %}
     </body>
-</html>
+</html> -->

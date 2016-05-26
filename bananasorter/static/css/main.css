@@ -182,6 +182,11 @@ PAGE: ABOUT
 COLORS
 ****************************/
 
+#content {
+    background-color: #fff;
+    color: #44f;
+}
+
 /* site body */
 body {
     background-color: #fff;
