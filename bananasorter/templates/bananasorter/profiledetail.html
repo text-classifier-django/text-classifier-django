@@ -35,6 +35,16 @@
     <input type="submit" name="action" value="Classify this!">
   </form>
 
+  <h2>Add a new category: </h2>
+    <form class="category_form" action="" method="post">{% csrf_token %}
+      {{category_form.as_p}}
+      <input type="submit" name="action" value="Submit">
+    </form>
+
+  <h3>DELETE THIS CLASSIFIER</h3>
+  <form id="delete" action="" method="post">{% csrf_token %}
+      <input type="submit" name="action" value="DELETE">
+  </form>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script type="text/javascript" src="{% static 'bananasorter/js/profile.js' %}"></script>

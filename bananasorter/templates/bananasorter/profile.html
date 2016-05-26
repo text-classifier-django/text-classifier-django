@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Profile: {{ user }}</title>
+        <title>{% block title %} Profile: {{ user }} {% endblock%}</title>
         <noscript>
             <meta http-equiv="refresh" content="60">
         </noscript>
@@ -23,7 +23,7 @@
             {% if user_class_list %}
                 <noscript>
                 {% for classifier in user_class_list %}
-                <li> <a href="{% url 'bananasorter:detail' classifier.id %}">{{ classifier }}</a></li>
+                <li> <a href="{% url 'bananasorter:profiledetail' classifier.id %}">{{ classifier }}</a></li>
                 {% endfor %}
                 </noscript>
             </ul>
