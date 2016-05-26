@@ -1,4 +1,4 @@
-{% extends 'preguntas/base.html' %}
+{% extends 'bananasorter/base.html' %}
 
 {% block title %}
 Registration Confirmation
@@ -6,6 +6,6 @@ Registration Confirmation
 
 {% block content %}
 <h2>You have registered!!</h2>
-<p>Click <a href="{% url 'banana:login' %}">here</a> to login.</p>
+<p>Go to  <a href="{% url 'bananasorter:index' %}">home page</a> and then login.</p>
 
 {% endblock %}
