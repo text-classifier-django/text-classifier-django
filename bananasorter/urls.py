@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^profile/', views.profile, name='profile'),
     url(r'^register/$', views.register_user, name='register_user'),
     url(r'^register_success/$', views.register_success, name='register_success'),
+
 ]
