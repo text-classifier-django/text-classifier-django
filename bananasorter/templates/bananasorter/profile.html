@@ -1,5 +1,5 @@
 {% extends 'bananasorter/base.html' %}
-
+{% load staticfiles %}
 
 <!DOCTYPE html>
 <html>
@@ -20,10 +20,12 @@
         </header>
         <p>View the following text classifiers you've made:</p>
         {% if user_class_list %}
-            <ul>
+            <ul class=classifier_list>
+                <noscript>
                 {% for classifier in user_class_list %}
-                <li> <a href="">{{ classifier }}</a></li>
+                <li> <a href="{% url 'bananasorter:detail' classifier.id %}">{{ classifier }}</a></li>
                 {% endfor %}
+                </noscript>
             </ul>
         {% else %}
             <ul>
@@ -36,18 +38,12 @@
             {% csrf_token %}
             <!-- {{ classifier_form.as_p }} -->
             <p>Name: <input type="text" name="name" value=""><br/><br/></p>
+            <input type="hidden" name="user_id" value={{ request.user.id }}>
             <input type="submit" name="new_classifier" value="Add Classifier">
         </form>
 
-
-        <br/>
-        <button onclick="myFunction()">Reload page</button>
-
-        <script>
-            function myFunction() {
-                location.reload();
-        </script>
     </body>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'bananasorter/js/profile.js' %}"></script>
 {% endblock %}
 </html>
