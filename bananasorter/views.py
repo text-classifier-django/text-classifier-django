@@ -5,10 +5,12 @@ from bananasorter.forms import ClassifierForm, CategoryForm
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
-from .serializers import UserSerializer, ClassifierSerializer, CategorySerializer
 from django.core.context_processors import csrf
 from django.contrib.auth.forms import UserCreationForm
 from django.core.urlresolvers import reverse
+from .serializers import (UserSerializer,
+                          ClassifierSerializer, CategorySerializer)
+
 
 
 class ClassifierViewSet(viewsets.ModelViewSet):
@@ -31,7 +33,8 @@ class CategoryViewSet(viewsets.ModelViewSet):
         queryset = Category.objects.all().order_by('-classifier')
         classifier_id = self.request.query_params.get('classifier_id', None)
         if classifier_id is not None:
-            queryset = queryset.filter(classifier=Classifier.objects.get(id=classifier_id))
+            queryset = queryset.filter(
+                    classifier=Classifier.objects.get(id=classifier_id))
         return queryset
 
 
@@ -97,39 +100,6 @@ def profile(request):
 
     context['classifier_form'] = ClassifierForm()
     return render(request, 'bananasorter/profile.html', context)
-
-
-@login_required
-def profiledetail(request, id):
-    context = {}
-    classifier = Classifier.objects.get(id=id)
-    context['classifier'] = classifier
-    context['categories'] = Category.objects.filter(classifier=classifier)
-
-    if request.method == 'POST':
-        if request.POST['action'] == 'Classify this!':
-            new_text = request.POST['new_text']
-            prediction = classifier.predict(new_text)
-            context['new_text'] = new_text
-            context['prediction'] = prediction[0]
-
-        elif request.POST['action'] == 'Submit':
-            form = CategoryForm(request.POST)
-            print(form, "got to submit")
-            if form.is_valid():
-                print(form, "is valid")
-                cat = form.save(commit=False)
-                cat.classifier = classifier
-                cat.save()
-
-        elif request.POST['action'] == 'DELETE':
-            print('delete it')
-            classifier.delete()
-            return HttpResponseRedirect('/profile/')
-
-    context['classifier_form'] = ClassifierForm()
-    context['category_form'] = CategoryForm()
-    return render(request, 'bananasorter/profiledetail.html', context)
 
 
 def register_user(request):

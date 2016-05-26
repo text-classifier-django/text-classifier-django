@@ -112,8 +112,7 @@ USE_L10N = True
 USE_TZ = True
 
 # Update database configuration with $DATABASE_URL.
-path_url = os.environ.get('BANANA_DATABASE_URL')
-db_from_env = dj_database_url.config(default=path_url, conn_max_age=500)
+db_from_env = dj_database_url.config('BANANA_DATABASE_URL', conn_max_age=500)
 DATABASES = {'default': {}}
 DATABASES['default'].update(db_from_env)
 
@@ -138,4 +137,5 @@ STATICFILES_DIRS = [
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/profile/'

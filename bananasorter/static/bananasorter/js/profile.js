@@ -9,7 +9,7 @@ var $user = $form.find('input[name="user_id"]')
 function append_classifier( classifier ) {
     $('.classifier_list').append(
         $('<li>').append(
-            $("<a href='/profile/" + classifier.id + "'>").text(classifier.name)));
+            $("<a href='/" + classifier.id + "'>").text(classifier.name)));
 };
 
 
