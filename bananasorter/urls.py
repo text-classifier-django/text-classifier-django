@@ -6,16 +6,8 @@ app_name = 'bananasorter'
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-<<<<<<< HEAD
-    url(r'^(?P<id>[0-9]+)/$', views.detail, name='detail'),
-    url(r'^profile/$', views.profile, name='profile'),
-    url(r'^profile/(?P<id>[0-9]+)/$',
-        views.profiledetail, name='profiledetail'),
     url(r'^register/$', views.register_user, name='register_user'),
     url(r'^register_success/$', views.register_success, name='register_success'),
-
-=======
     url(r'^(?P<id>[0-9]+)', views.detail, name='detail'),
     url(r'^profile/', views.profile, name='profile'),
->>>>>>> b04dc44a72cf2e411703fa1a0d18b163c03a81db
 ]
