@@ -6,7 +6,7 @@ from .models import Classifier, Category
 class ClassifierSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Classifier
-        fields = ('id', 'name', 'category_set')
+        fields = ('id', 'name', 'owner', 'category_set')
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
