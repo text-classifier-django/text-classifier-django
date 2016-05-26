@@ -10,11 +10,11 @@ from .serializers import (UserSerializer,
 
 
 class ClassifierViewSet(viewsets.ModelViewSet):
-    queryset = Classifier.objects.all()
+    queryset = Classifier.objects.all().order_by('-id')
     serializer_class = ClassifierSerializer
 
     def get_queryset(self):
-        queryset = Classifier.objects.all()
+        queryset = Classifier.objects.all().order_by('-id')
         user_id = self.request.query_params.get('user_id', None)
         if user_id is not None:
             queryset = queryset.filter(owner=User.objects.get(id=user_id))

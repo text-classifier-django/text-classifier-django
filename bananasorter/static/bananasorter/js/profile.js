@@ -29,7 +29,7 @@ $form.submit( function( event ) {
         csrfmiddlewaretoken: $csrf.val(),
         name: $name.val(),
         owner: $user_api + $user.val() + '/',
-    }
+    };
 
     $.ajax({
         url: $class_api,
@@ -37,7 +37,9 @@ $form.submit( function( event ) {
         data: $data,
         success: function() {
             console.log('I think it worked!');
-            append_classifier($data);
+            $.get($class_api, function( data ) {
+                append_classifier(data.results[0])
+            });
         }
     });
 });
