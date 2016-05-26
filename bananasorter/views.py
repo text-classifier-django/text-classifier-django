@@ -1,4 +1,4 @@
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from bananasorter.models import Classifier, Category
 from bananasorter.forms import ClassifierForm, CategoryForm
@@ -6,6 +6,9 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
 from .serializers import UserSerializer, ClassifierSerializer, CategorySerializer
+from django.core.context_processors import csrf
+from django.contrib.auth.forms import UserCreationForm
+from django.core.urlresolvers import reverse
 
 
 class ClassifierViewSet(viewsets.ModelViewSet):
@@ -127,3 +130,25 @@ def profiledetail(request, id):
     context['classifier_form'] = ClassifierForm()
     context['category_form'] = CategoryForm()
     return render(request, 'bananasorter/profiledetail.html', context)
+
+
+def register_user(request):
+
+    if request.method == 'POST':
+        print('POST')
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return HttpResponseRedirect(reverse('bananasorter:register_success'))
+        else:
+            output = form.errors.as_json()
+            return HttpResponse(output)
+    args = {}
+    args.update(csrf(request))
+    args['form'] = UserCreationForm()
+
+    return render(request, 'registration/register.html', args)
+
+
+def register_success(request):
+    return render(request, 'registration/register_success.html')
