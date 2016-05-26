@@ -30,7 +30,7 @@ body {
 nav.navbar.navbar-fixed-top.navbar-light.bg-faded {
     background-color: #fff;
     color: #000;
-    border-bottom: 10px solid #ccc;
+    border-bottom: 10px solid #ffb366;
 
 }
 
@@ -75,4 +75,8 @@ ul.nav.navbar-nav {
     text-align: right;
     width: 20%;
     vertical-align: bottom;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #ffb366;
 }
