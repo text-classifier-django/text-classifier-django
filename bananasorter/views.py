@@ -127,3 +127,24 @@ def profiledetail(request, id):
     context['classifier_form'] = ClassifierForm()
     context['category_form'] = CategoryForm()
     return render(request, 'bananasorter/profiledetail.html', context)
+
+
+def register_user(request):
+    if request.method == 'POST':
+        print('POST')
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            User = form.save()
+            return HttpResponseRedirect(reverse('bananasorter:register_success'))
+        else:
+            output = form.errors.as_json()
+            return HttpResponse(output)
+    args = {}
+    args.update(csrf(request))
+    args['form'] = UserCreationForm()
+
+    return render_to_response('bananasorter/register.html', args)
+
+
+def register_success(request):
+    return render_to_response('bananasorter/register_success.html')
