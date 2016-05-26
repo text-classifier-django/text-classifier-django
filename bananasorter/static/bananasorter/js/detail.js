@@ -1,6 +1,6 @@
 var $class_api = '/api/classifiers/';
 var $user_api = '/api/users/';
-var $cat_api = '/api/categories';
+var $cat_api = '/api/categories/';
 var $use_form = $('#classify')
 var $classifier = $use_form.find('input[name="classifier_id"]')
 // var $csrf = $form.find('input[name="csrfmiddlewaretoken"]')
@@ -9,8 +9,8 @@ var $classifier = $use_form.find('input[name="classifier_id"]')
 
 
 function append_category( category ) {
-    $('.categories_list').append(
-        $('<li>').text(category.name);
+    $('.category_list').append(
+        $('<li>').text(category.name));
 };
 
 
