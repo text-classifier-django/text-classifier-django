@@ -12,10 +12,24 @@ class ClassifierViewSet(viewsets.ModelViewSet):
     queryset = Classifier.objects.all()
     serializer_class = ClassifierSerializer
 
+    def get_queryset(self):
+        queryset = Classifier.objects.all()
+        user_id = self.request.query_params.get('user_id', None)
+        if user_id is not None:
+            queryset = queryset.filter(owner=User.objects.get(id=user_id))
+        return queryset
+
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all().order_by('-classifier')
     serializer_class = CategorySerializer
+
+    def get_queryset(self):
+        queryset = Category.objects.all().order_by('-classifier')
+        classifier_id = self.request.query_params.get('classifier_id', None)
+        if classifier_id is not None:
+            queryset = queryset.filter(classifier=Classifier.objects.get(id=classifier_id))
+        return queryset
 
 
 class UserViewSet(viewsets.ModelViewSet):
