@@ -58,7 +58,9 @@ ROOT_URLCONF = 'banana.urls'
 TEMPLATES = (
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'bananasorter/templates/bananasorter'),
+                 os.path.join(BASE_DIR, 'bananasorter/templates/registration]'),
+                 ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
