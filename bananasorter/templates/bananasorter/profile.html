@@ -19,19 +19,18 @@
             <h2>Text classifiers</h2>
         </header>
         <p>View the following text classifiers you've made:</p>
-        {% if user_class_list %}
             <ul class=classifier_list>
+            {% if user_class_list %}
                 <noscript>
                 {% for classifier in user_class_list %}
                 <li> <a href="{% url 'bananasorter:detail' classifier.id %}">{{ classifier }}</a></li>
                 {% endfor %}
                 </noscript>
             </ul>
-        {% else %}
-            <ul>
+            {% else %}
                 <li>Empty list</li>
             </ul>
-        {% endif %}
+            {% endif %}
 
         <h2>Add a new classifier: </h2>
         <form class="classifier_form" action="" method="post">

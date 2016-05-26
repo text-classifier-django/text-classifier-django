@@ -1,5 +1,9 @@
 var $class_api = '/api/classifiers/';
 var $user_api = '/api/users/';
+$form = $('.classifier_form')
+var $csrf = $form.find('input[name="csrfmiddlewaretoken"]')
+var $name = $form.find('input[name="name"]')
+var $user = $form.find('input[name="user_id"]')
 
 
 function append_classifier( classifier ) {
@@ -17,10 +21,6 @@ function get_classifiers() {
 })};
 get_classifiers()
 
-$form = $('.classifier_form')
-var $csrf = $form.find('input[name="csrfmiddlewaretoken"]')
-var $name = $form.find('input[name="name"]')
-var $user = $form.find('input[name="user_id"]')
 
 $form.submit( function( event ) {
     event.preventDefault();
