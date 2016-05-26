@@ -5,7 +5,8 @@ from bananasorter.forms import ClassifierForm, CategoryForm
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
-from .serializers import UserSerializer, ClassifierSerializer, CategorySerializer
+from .serializers import (UserSerializer,
+                          ClassifierSerializer, CategorySerializer)
 
 
 class ClassifierViewSet(viewsets.ModelViewSet):
@@ -28,7 +29,8 @@ class CategoryViewSet(viewsets.ModelViewSet):
         queryset = Category.objects.all().order_by('-classifier')
         classifier_id = self.request.query_params.get('classifier_id', None)
         if classifier_id is not None:
-            queryset = queryset.filter(classifier=Classifier.objects.get(id=classifier_id))
+            queryset = queryset.filter(
+                    classifier=Classifier.objects.get(id=classifier_id))
         return queryset
 
 
